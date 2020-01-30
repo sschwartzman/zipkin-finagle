@@ -85,6 +85,7 @@ public final class HttpZipkinTracer extends ZipkinTracer {
       return new AutoValue_HttpZipkinTracer_Config.Builder()
           .hostHeader(zipkin.http.hostHeader$.Flag.apply())
           .host(zipkin.http.host$.Flag.apply())
+          .path(zipkin.http.path$.Flag.apply())
           .compressionEnabled(zipkin.http.compressionEnabled$.Flag.apply())
           .localServiceName(localServiceName$.Flag.apply())
           .initialSampleRate(zipkin.initialSampleRate$.Flag.apply());
@@ -95,6 +96,8 @@ public final class HttpZipkinTracer extends ZipkinTracer {
     abstract Name host();
 
     abstract String hostHeader();
+
+    abstract String path();
 
     abstract boolean compressionEnabled();
 
@@ -122,6 +125,9 @@ public final class HttpZipkinTracer extends ZipkinTracer {
 
       /** The Host header used when sending spans to Zipkin. Defaults to "zipkin" */
       public abstract Builder hostHeader(String host);
+
+      /** The URL path of the Zipkin http service. Defaults to "/api/v2/spans" */
+      public abstract Builder path(String path);
 
       /** True implies that spans will be gzipped before transport. Defaults to true. */
       public abstract Builder compressionEnabled(boolean compressSpans);

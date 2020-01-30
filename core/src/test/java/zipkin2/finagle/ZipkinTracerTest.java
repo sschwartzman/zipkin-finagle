@@ -206,7 +206,7 @@ public class ZipkinTracerTest {
   }
 
   void flush() {
-    ((AsyncReporter) tracer.reporter).flush();
+    ((AsyncReporter<Span>) tracer.reporter).flush();
   }
 
   ZipkinTracer tracerWithLocalServiceName(String localServiceName) {
